@@ -1,0 +1,14 @@
+{
+  "name": "my-writing-notebook",
+  "version": "0.1.0",
+  "description": "A bunch of utilities for a writer",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Alicia Wilkerson <alicia@akddev.net>",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^4.0.3"
+  }
+}
