@@ -99,6 +99,11 @@ function createWindow () {
       event.returnValue = false
     }
   })
+
+  mainWindow.on('resize', () => {
+    let { width, height } = mainWindow.getBounds()
+    UserConfig.set('windowBounds', { width, height })
+  })
 }
 
 app.on('ready', createWindow)
