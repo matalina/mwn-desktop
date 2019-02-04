@@ -1,25 +1,22 @@
-# my-writing-notebook
+# My Writing Notebook
 
 > a utility app for writers
 
-#### Build Setup
+- [X] No default menu shown
+- [X] Minimize/Close to tray
+- [X] Show/Quit from tray
+- [ ] Settings page
+ - [ ] Launch at start up ([docs](https://electronjs.org/docs/api/app#appsetloginitemsettingssettings-macos-windows))
+ - [ ] Folder location of writing notebook ([docs](https://electronjs.org/docs/api/dialog))
+- [ ] Word count
+ - [ ] Schedule count ([docs](https://www.npmjs.com/package/node-cron) or [docs](https://gist.github.com/KartikTalwar/2306741))
+ - [ ] Record all files
+ - [ ] Save words counted per file everyday
+ - [ ] Word count statistics ([docs](https://github.com/d3/d3))
+  - [ ] Daily written graph (like github/wordpress)
+  - [ ] Per file word count graph
+  - [ ] Per project/folder word count graph
+  - [ ] Total word count graph
 
-``` bash
-# install dependencies
-npm install
 
-# serve with hot reload at localhost:9080
-npm run dev
-
-# build electron application for production
-npm run build
-
-
-# lint all JS/Vue component files in `src/`
-npm run lint
-
-```
-
----
-
-This project was generated with [electron-vue](https://github.com/SimulatedGREG/electron-vue)@[8fae476](https://github.com/SimulatedGREG/electron-vue/tree/8fae4763e9d225d3691b627e83b9e09b56f6c935) using [vue-cli](https://github.com/vuejs/vue-cli). Documentation about the original structure can be found [here](https://simulatedgreg.gitbooks.io/electron-vue/content/index.html).
+Long running process: var backgroundWindow = new BrowserWindow({show: false});

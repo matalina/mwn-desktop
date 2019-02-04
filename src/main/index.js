@@ -1,10 +1,21 @@
 'use strict'
 
 import electron from 'electron'
+import UserConfig from '../common/config'
 let path = require('path')
 
 const app = electron.app
 let isQuiting = false
+
+UserConfig.create({
+  // We'll call our data file 'user-preferences'
+  configName: 'settings',
+  defaults: {
+    // 800x600 is the default size of our window
+    windowBounds: { width: 800, height: 600 }
+  }
+})
+
 /**
  * Set `__static` path to static files in production
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
@@ -24,10 +35,12 @@ function createWindow () {
   /**
    * Initial window options
    */
+
+  let { width, height } = UserConfig.get('windowBounds')
   mainWindow = new electron.BrowserWindow({
-    height: 563,
+    height,
     useContentSize: true,
-    width: 1000,
+    width,
     icon
   })
 
