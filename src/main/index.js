@@ -12,7 +12,11 @@ UserConfig.create({
   configName: 'settings',
   defaults: {
     // 800x600 is the default size of our window
-    windowBounds: { width: 800, height: 600 }
+    windowBounds: { width: 800, height: 600 },
+    // do not start the app up on startup
+    onStartUp: false,
+    // list of directories that make up the writers notebook
+    notebookDirectories: []
   }
 })
 
