@@ -8,13 +8,20 @@ export default new Router({
     {
       path: '/',
       name: 'landing-page',
-      component: require('@/components/LandingPage').default
+      component: require('@/pages/LandingPage').default
     },
     {
       path: '/settings',
       name: 'settings',
-      component: require('@/components/Settings').default
+      component: require('@/pages/Settings').default
     },
+    // Background Process
+    {
+      path: '/count-words',
+      name: 'bg-count-words',
+      component: require('@/background/WordCounter').default
+    },
+    // Default Redirect
     {
       path: '*',
       redirect: '/'

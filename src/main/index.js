@@ -20,6 +20,8 @@ UserConfig.create({
   }
 })
 
+const showBackgroundWindow = process.env.NODE_ENV === 'development'
+
 /**
  * Set `__static` path to static files in production
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
@@ -33,13 +35,22 @@ const winURL = process.env.NODE_ENV === 'development'
   ? `http://localhost:9080`
   : `file://${__dirname}/index.html`
 
+let wordCounterWindow
+const wordCounterURL = process.env.NODE_ENV === 'development'
+  ? `http://localhost:9080/#/count-words`
+  : `file://${__dirname}/index.html/#/count-words`
+
 let icon = './build/icons/logo.ico'
 
-function createWindow () {
-  /**
-   * Initial window options
-   */
+function createWordCounterWindow () {
+  wordCounterWindow = new electron.BrowserWindow({
+    show: showBackgroundWindow
+  })
 
+  wordCounterWindow.loadURL(wordCounterURL)
+}
+
+function createWindow () {
   let { width, height } = UserConfig.get('windowBounds')
   mainWindow = new electron.BrowserWindow({
     height,
@@ -110,7 +121,10 @@ function createWindow () {
   })
 }
 
-app.on('ready', createWindow)
+app.on('ready', () => {
+  createWindow()
+  createWordCounterWindow()
+})
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {

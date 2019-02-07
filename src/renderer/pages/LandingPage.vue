@@ -1,7 +1,7 @@
 <template>
-  <div id="wrapper">
-    <h1>My Writing Notebook</h1>
-    <p><router-link to="settings">Settings</router-link></p>
+  <div class="row">
+    <div class="col">
+    </div>
   </div>
 </template>
 

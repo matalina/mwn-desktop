@@ -1,10 +1,16 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <mwn-menu></mwn-menu>
+    <router-view class="container-fluid"></router-view>
   </div>
 </template>
 
 <script>
+  import Vue from 'vue'
+  import Menu from './components/Menu'
+
+  Vue.component('mwn-menu', Menu)
+
   export default {
     name: 'my-writing-notebook'
   }
@@ -20,6 +26,6 @@
 
   $body-bg: $light;
   $body-color: $dark;
-  
+
   @import "../../node_modules/bootstrap/scss/bootstrap";
 </style>
