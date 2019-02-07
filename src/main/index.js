@@ -33,7 +33,7 @@ const winURL = process.env.NODE_ENV === 'development'
   ? `http://localhost:9080`
   : `file://${__dirname}/index.html`
 
-let icon = './build/icons/icon.ico'
+let icon = './build/icons/logo.ico'
 
 function createWindow () {
   /**
