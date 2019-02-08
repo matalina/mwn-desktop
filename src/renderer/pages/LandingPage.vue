@@ -1,8 +1,11 @@
 <template>
-  <div class="row">
-    <div class="col">
+  <main>
+    <div class="row">
+      <div class="col">
+        <h1>Statistics</h1>
+      </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>
