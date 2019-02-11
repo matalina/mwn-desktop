@@ -12,38 +12,35 @@
 </template>
 
 <script>
-import UserConfig from '../../common/config'
-
-UserConfig.create({
-  // We'll call our data file 'user-preferences'
-  configName: 'settings',
-  defaults: {
-    // 800x600 is the default size of our window
-    windowBounds: { width: 800, height: 600 },
-    // do not start the app up on startup
-    onStartUp: false,
-    // list of directories that make up the writers notebook
-    notebookDirectories: []
-  }
-})
-
 export default {
   name: 'bg-word-counter',
   data () {
     return {
-      paths: UserConfig.get('notebookDirectories')
+      paths: [],
+      countInterval: 5
     }
   },
-  watch: {
-    paths () {
-      this.paths = UserConfig.get('notebookDirectories')
+  computed: {
+    inMilliseconds () {
+      return this.countInterval * 60 * 1000
     }
   },
   methods: {
+    runInBackground () {
+      console.log('begin counting')
 
+      for (let i in this.paths) {
+        let notebook = this.paths[i]
+        console.log(notebook)
+      }
+
+      setTimeout(this.runInBackground, this.inMilliseconds)
+    }
   },
   mounted () {
     console.log('mounted word counter')
+
+    setTimeout(this.runInBackground, this.inMilliseconds)
   }
 }
 </script>

@@ -20,10 +20,10 @@
             <div class="row">
               <div class="col">
                 <ul>
-                  <li v-for="(path, i) in paths">
+                  <li v-for="path in paths">
                     {{ path }}
                     <button class="btn btn-danger"
-                            @click="removeLocation(i)"
+                            @click="removeLocation(path)"
                     >
                       <i class="fas fa-times-circle fa-fw"></i>
                     </button>
@@ -33,6 +33,12 @@
             </div>
           </div>
           <div class="col-6">
+            <div class="form-group">
+              <input type="text"
+                     v-model="minutes"
+                     @keyup="updateInterval()"
+              />
+            </div>
             <div class="form-group form-check">
               <input type="checkbox"
                      class="form-check-input"
@@ -49,21 +55,28 @@
 </template>
 
 <script>
-  import UserConfig from '../../common/config'
   const { dialog } = require('electron').remote
 
   export default {
     name: 'settings',
     data () {
       return {
-        paths: UserConfig.get('notebookDirectories'),
-        onStartup: UserConfig.get('onStartUp')
+        minutes: this.countInterval
+      }
+    },
+    computed: {
+      paths () {
+        return this.$store.state.Settings.notebookDirectories
+      },
+      onStartup () {
+        return this.$store.state.Settings.onStartUp
+      },
+      countInterval () {
+        return this.$store.state.Settings.countInterval
       }
     },
     watch: {
-      paths () {
-        UserConfig.set('notebookDirectories', this.paths)
-      }
+
     },
     methods: {
       getPath () {
@@ -72,10 +85,16 @@
             'openDirectory'
           ]
         })
-        this.paths.push(path[0])
+        this.$store.dispatch('addNotebookDirectory', path)
       },
-      removeLocation (index) {
-        this.paths.splice(index, 1)
+      removeLocation (path) {
+        this.$store.dispatch('removeNotebookDirectory', path)
+      },
+      toggleStartUp () {
+        this.$store.dispatch('toggleStartUp')
+      },
+      updateInterval () {
+        this.$store.dispatch('updateCountInterval', this.minutes)
       }
     }
   }

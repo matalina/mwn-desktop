@@ -16,7 +16,9 @@ UserConfig.create({
     // do not start the app up on startup
     onStartUp: false,
     // list of directories that make up the writers notebook
-    notebookDirectories: []
+    notebookDirectories: [],
+    // word count interval (min: 5 minutes max: 1 day) or 0 for off
+    countInterval: 5
   }
 })
 
@@ -44,10 +46,13 @@ let icon = './build/icons/logo.ico'
 
 function createWordCounterWindow () {
   wordCounterWindow = new electron.BrowserWindow({
-    show: showBackgroundWindow
+    show: showBackgroundWindow,
+    icon
   })
 
   wordCounterWindow.loadURL(wordCounterURL)
+
+  wordCounterWindow.setMenuBarVisibility(false)
 }
 
 function createWindow () {
@@ -56,21 +61,11 @@ function createWindow () {
     height,
     useContentSize: true,
     width,
-    icon
+    icon,
+    show: true
   })
 
   mainWindow.loadURL(winURL)
-  /*
-  const menuTemplate = [
-    {
-      label: 'Electron',
-      submenu: [
-
-      ]
-    }
-  ]
-  const menu = electron.Menu.buildFromTemplate(menuTemplate)
-  electron.Menu.setApplicationMenu(menu) */
 
   mainWindow.setMenuBarVisibility(false)
 
