@@ -20,3 +20,5 @@
 
 
 Long running process: var backgroundWindow = new BrowserWindow({show: false});
+
+https://github.com/lorisleiva/javel - models like Laravel
